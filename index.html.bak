@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Pyrogravure</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="header">
+  <h1 class="site-title">Pyrogravure</h1>
+
+  <nav class="main-nav">
+    <a href="index.html">Accueil</a>
+    <a href="pyrogravure.html">La pyrogravure</a>
+    <a href="oeuvres.html">Œuvres</a>
+    <a href="avis.html">Avis</a>
+  </nav>
+</header>
+
+<main class="intro">
+  <div class="intro-text">
+    <h2>L’art du feu sur le bois</h2>
+    <p>Pyrogravure & engravure — œuvres faites à la main</p>
+  </div>
+
+  <div class="intro-image">
+    <img src="assets/images/oeuvre1.jpg" alt="Œuvre en pyrogravure">
+  </div>
+</main>
+
+</body>
+</html>

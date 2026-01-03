@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pyrogravure - L'Art du Feu sur le Bois</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-container">
+    <h1 class="site-title">✦ Pyrogravure ✦</h1>
+    
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link active">Accueil</a>
+      <a href="pyrogravure.html" class="nav-link">La Pyrogravure</a>
+      <a href="oeuvres.html" class="nav-link">Œuvres</a>
+    </nav>
+  </div>
+</header>
+
+<!-- CAROUSEL -->
+<section class="carousel-section">
+  <div class="carousel-container">
+    <div class="carousel">
+      <div class="slide active" style="background-image: linear-gradient(135deg, rgba(42, 42, 42, 0.4) 0%, rgba(42, 42, 42, 0.4) 100%), url('assets/images/oeuvre1.jpg');">
+        <div class="slide-content">
+          <h2 class="slide-title">L'Art du Feu</h2>
+          <p class="slide-text">Chaque trait, chaque ombre raconte une histoire</p>
+        </div>
+      </div>
+      
+      <div class="slide" style="background-image: linear-gradient(135deg, rgba(42, 42, 42, 0.4) 0%, rgba(42, 42, 42, 0.4) 100%), url('assets/images/oeuvre9.jpg');">
+        <div class="slide-content">
+          <h2 class="slide-title">Créations Artisanales</h2>
+          <p class="slide-text">Techniques millénaires, vision contemporaine</p>
+        </div>
+      </div>
+      
+      <div class="slide" style="background-image: linear-gradient(135deg, rgba(42, 42, 42, 0.4) 0%, rgba(42, 42, 42, 0.4) 100%), url('assets/images/oeuvre3.jpg');">
+        <div class="slide-content">
+          <h2 class="slide-title">Œuvres Uniques</h2>
+          <p class="slide-text">Faites à la main avec passion et précision</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAROUSEL CONTROLS -->
+    <div class="carousel-controls">
+      <button class="control-btn prev" id="prev-btn">❮</button>
+      <button class="control-btn next" id="next-btn">❯</button>
+    </div>
+
+    <!-- CAROUSEL INDICATORS -->
+    <div class="carousel-indicators">
+      <span class="indicator active" data-index="0"></span>
+      <span class="indicator" data-index="1"></span>
+      <span class="indicator" data-index="2"></span>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO SECTION -->
+<main class="intro">
+  <div class="intro-text">
+    <h2>L'art du feu sur le bois</h2>
+    <p>Bienvenue dans l'univers de la pyrogravure, où le feu devient pinceau et le bois devient toile. Chaque création est une exploration unique de textures, d'ombres et de lumière.</p>
+    <a href="oeuvres.html" class="cta-button">Découvrir nos œuvres</a>
+  </div>
+
+  <div class="intro-features">
+    <div class="feature-card">
+      <div class="feature-icon">🔥</div>
+      <h3>Artisanal</h3>
+      <p>Créé entièrement à la main</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎨</div>
+      <h3>Unique</h3>
+      <p>Chaque pièce est originale</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">✨</div>
+      <h3>Premium</h3>
+      <p>Qualité et détails impeccables</p>
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>&copy; 2025 Pyrogravure. Tous droits réservés.</p>
+</footer>
+
+<script src="js/carousel.js"></script>
+</body>
+</html>

@@ -1,0 +1,669 @@
+/* ============================================
+   RESET & BASE
+   ============================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: "Playfair Display", "Georgia", serif;
+  background-color: #faf9f7;
+  color: #2a2a2a;
+  line-height: 1.6;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+.header {
+  background: linear-gradient(135deg, #ffffff 0%, #f5f1ed 100%);
+  padding: 35px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 30px;
+  text-align: center;
+}
+
+.site-title {
+  font-size: 2.8rem;
+  letter-spacing: 0.3em;
+  font-weight: 700;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #2a2a2a 0%, #5a5a5a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.main-nav {
+  display: flex;
+  justify-content: center;
+  gap: 45px;
+  flex-wrap: wrap;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #2a2a2a;
+  font-size: 1.05rem;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+  letter-spacing: 0.05em;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(135deg, #8b7355 0%, #d4af37 100%);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* ============================================
+   CAROUSEL SECTION
+   ============================================ */
+.carousel-section {
+  width: 100%;
+  height: 600px;
+  background: #2a2a2a;
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+      /* Slightly dezoom to show more of the image while filling visually.
+        95% shows more of the photo but keeps a full-bleed feel. */
+      background-size: 95% auto;
+      background-repeat: no-repeat;
+      background-position: center center;
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.slide-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 60px;
+  /* Fond plus sombre pour que le texte reste lisible */
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+  color: white;
+  text-align: left;
+}
+
+.slide-title {
+  font-size: 3.5rem;
+  margin-bottom: 15px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  animation: slideInUp 0.8s ease-out 0.2s both;
+}
+
+.slide-text {
+  font-size: 1.4rem;
+  opacity: 0.95;
+  max-width: 600px;
+  animation: slideInUp 0.8s ease-out 0.4s both;
+  font-family: "Segoe UI", sans-serif;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* CAROUSEL CONTROLS */
+.carousel-controls {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+  transform: translateY(-50%);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.control-btn {
+  pointer-events: auto;
+  background: rgba(255, 255, 255, 0.3);
+  color: white;
+  border: none;
+  font-size: 2rem;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+}
+
+.control-btn:hover {
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(1.1);
+}
+
+/* CAROUSEL INDICATORS */
+.carousel-indicators {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 10;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.indicator.active {
+  background: white;
+  width: 32px;
+  border-radius: 6px;
+}
+
+/* ============================================
+   INTRO SECTION
+   ============================================ */
+.intro {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 120px 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  gap: 80px;
+}
+
+.intro-text h2 {
+  font-size: 3.2rem;
+  line-height: 1.2;
+  margin-bottom: 25px;
+  color: #2a2a2a;
+}
+
+.intro-text p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 35px;
+  line-height: 1.8;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 15px 40px;
+  background: linear-gradient(135deg, #8b7355 0%, #d4af37 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  letter-spacing: 0.1em;
+  font-family: "Segoe UI", sans-serif;
+  font-size: 1rem;
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(139, 115, 85, 0.3);
+}
+
+/* FEATURE CARDS */
+.intro-features {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.feature-card {
+  background: white;
+  padding: 35px;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border-left: 4px solid transparent;
+  background: linear-gradient(135deg, #ffffff 0%, #f9f7f4 100%);
+}
+
+.feature-card:hover {
+  transform: translateX(10px);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
+  border-left-color: #d4af37;
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.feature-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  color: #2a2a2a;
+}
+
+.feature-card p {
+  color: #666;
+  font-size: 1rem;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+  background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+  color: white;
+  text-align: center;
+  padding: 40px;
+  font-family: "Segoe UI", sans-serif;
+  margin-top: 60px;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .carousel-section {
+    height: 400px;
+  }
+
+  .slide-title {
+    font-size: 2rem;
+  }
+
+  .slide-text {
+    font-size: 1rem;
+  }
+
+  .intro {
+    grid-template-columns: 1fr;
+    padding: 60px 30px;
+    gap: 50px;
+  }
+
+  .intro-text h2 {
+    font-size: 2rem;
+  }
+
+  .site-title {
+    font-size: 2rem;
+  }
+
+  .main-nav {
+    gap: 20px;
+  }
+
+  .nav-link {
+    font-size: 0.9rem;
+  }
+}
+
+/* ============================================
+   ARTICLE / LA PYROGRAVURE
+   ============================================ */
+.article-page .article-hero {
+  height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  position: relative;
+  background-size: cover;
+  background-position: center center;
+}
+
+.article-page .hero-inner {
+  text-align: center;
+  z-index: 2;
+}
+
+.article-title {
+  font-size: 3rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+  text-shadow: 0 8px 30px rgba(0,0,0,0.6);
+  animation: fadeInUp 0.8s ease both;
+}
+
+.article-lead {
+  font-family: "Segoe UI", sans-serif;
+  font-size: 1.15rem;
+  opacity: 0.95;
+}
+
+.article-content.container {
+  max-width: 1100px;
+  margin: 60px auto;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 40px;
+  padding: 0 30px 80px;
+}
+
+.article-content article p {
+  margin-bottom: 18px;
+  color: #333;
+  font-size: 1.05rem;
+  animation: fadeIn 0.6s ease both;
+}
+
+.article-aside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.article-aside .card {
+  background: linear-gradient(180deg, #fff 0%, #fbf9f6 100%);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 320px;
+  text-align: center;
+  transform: translateY(8px);
+  transition: transform 0.32s ease, box-shadow 0.32s ease;
+  animation: slideInRight 0.6s ease both;
+}
+
+.article-aside .card ul {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0 0;
+  text-align: center;
+}
+
+.article-aside .card li {
+  padding: 6px 0;
+  color: #555;
+}
+
+.article-aside .card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+}
+
+.article-aside .card:nth-child(1) { animation-delay: 0.08s; }
+.article-aside .card:nth-child(2) { animation-delay: 0.18s; }
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(18px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.quote {
+  font-style: italic;
+  border-left: 4px solid #d4af37;
+  padding-left: 16px;
+  color: #4a3f33;
+  margin: 22px 0;
+  background: rgba(212,175,55,0.03);
+}
+
+.conclusion {
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.ember {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(212,175,55,0.9), rgba(212,175,55,0.25) 25%, transparent 40%);
+  filter: blur(12px);
+  opacity: 0.35;
+  animation: emberPulse 3.5s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes emberPulse {
+  0% { transform: scale(0.9); opacity: 0.25; }
+  50% { transform: scale(1.05); opacity: 0.5; }
+  100% { transform: scale(0.9); opacity: 0.25; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Responsive article layout */
+@media (max-width: 900px) {
+  .article-content.container {
+    grid-template-columns: 1fr;
+  }
+  .article-aside { order: 2; }
+}
+
+/* ============================================
+   GALLERY & REVIEWS
+   ============================================ */
+/* Gallery page with improved styling */
+.gallery-page { position: relative; background: linear-gradient(180deg, #faf9f7 0%, #f5f1ed 100%) }
+.gallery-page .section-title { text-align: center; font-size: 2.8rem; margin-top: 56px; margin-bottom: 16px; font-weight: 700; background: linear-gradient(135deg, #2a2a2a 0%, #5a5a5a 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text }
+.gallery-page .section-sub { text-align:center; color:#777; margin-bottom:32px; font-size: 1.1rem; font-family: "Segoe UI", sans-serif }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin: 30px 0 80px;
+  padding: 0 20px;
+}
+/* Gallery thumbnails with improved shadows and animations */
+.thumb-wrap { display:flex; flex-direction:column; gap:12px; animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both }
+.thumb { overflow: hidden; border-radius: 16px; position: relative; cursor: pointer; box-shadow: 0 12px 40px rgba(0,0,0,0.1); transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) }
+.thumb img { width: 100%; height: 320px; object-fit: cover; display:block; transition: transform 0.5s cubic-bezier(.2,.8,.2,1), filter 0.35s ease; border-radius:16px }
+.thumb:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(0,0,0,0.18) }
+.thumb:hover img { transform: scale(1.06); filter: saturate(1.08) contrast(1.05); }
+@keyframes popIn { from { opacity: 0; transform: translateY(12px) scale(0.96) } to { opacity: 1; transform: translateY(0) scale(1) } }
+
+.lightbox { position: fixed; inset:0; background: rgba(0,0,0,0.85); display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition: opacity 0.25s ease; z-index:9999 }
+.lightbox.open { opacity:1; pointer-events:auto }
+.lb-image-wrap { max-width: 85%; max-height: 70%; display:flex; align-items:center; justify-content:center }
+.lb-image-wrap img { max-width:100%; max-height:100%; border-radius:10px; box-shadow:0 30px 80px rgba(0,0,0,0.7) }
+/* Lightbox navigation buttons — larger and more prominent */
+.lb-close, .lb-prev, .lb-next { position:absolute; background:transparent; border:none; color:white; font-size:2.4rem; padding:16px; cursor:pointer; transition: all 0.2s ease }
+.lb-close { top:18px; right:26px }
+.lb-prev { left:18px; hover: scale(1.15) }
+.lb-next { right:18px; hover: scale(1.15) }
+.lb-prev:hover, .lb-next:hover { transform: scale(1.15); text-shadow: 0 0 20px rgba(255,255,255,0.6) }
+
+.reviews-section { max-width:1100px; margin: 40px auto 120px; padding: 0 30px }
+.review-form { display:flex; flex-direction:column; gap:12px; margin-bottom:18px }
+.stars { font-size:1.6rem; color:#d4af37 }
+.star, .lb-star { cursor: pointer; display: inline-flex; align-items:center; justify-content:center; padding:8px; font-size:1.6rem }
+.review-form textarea, .lb-review-form textarea { min-height:80px; padding:12px; border-radius:8px; border:1px solid #e6e0da; resize:vertical }
+.reviews-list { margin-top:16px; display:flex; flex-direction:column; gap:12px }
+.review-item, .lb-review-item { background:white; padding:12px 14px; border-radius:8px; box-shadow:0 8px 24px rgba(0,0,0,0.04) }
+.review-meta { color:#7a6a5a; font-size:0.95rem; margin-bottom:6px }
+.review-body { color:#333 }
+.reviews-chart { margin-top:22px; max-width:640px }
+
+.thumb-meta { font-size:0.95rem; color:#6b5a4a; text-align:center; min-height:46px }
+/* Numeric average under each thumb: larger, bolder, more legible */
+.thumb-review .thumb-review-text {
+  font-size:1.12rem;
+  font-weight:600;
+  color:#232323;
+  margin-top:6px;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Fallback / small note when there is no review */
+.thumb-review-none { font-size:1rem; color:#8d7f70 }
+.thumb-stars { color:#d4af37 }
+
+.meta-stars { display:flex; justify-content:center; gap:8px; margin-top:8px }
+.meta-star { font-size:1.6rem; color:#d4af37; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; padding:6px; border-radius:6px; transition:transform 0.12s ease, background-color 0.12s ease }
+.meta-star:hover{ transform: scale(1.08); background: rgba(212,175,55,0.08) }
+.meta-form { display:none; margin-top:8px }
+.meta-form textarea { width:100%; min-height:64px }
+.meta-form .meta-submit { margin-top:8px; align-self:center }
+
+.thumb-review-none { color:#8d7f70 }
+
+/* Hide reviews in lightbox — user only wants to see the image */
+.lb-reviews { width:90%; max-width:820px; margin-top:18px; display:none; gap:18px; align-items:flex-start; z-index:2 }
+.lb-review-form { flex:1; display:flex; flex-direction:column; gap:10px }
+.lb-reviews-list { flex:1; max-height:220px; overflow:auto }
+.lb-no-reviews { color:#ddd }
+
+/* Expand image area when reviews are hidden */
+.lightbox.open .lb-image-wrap { max-width: 95%; max-height: 95%; }
+
+/* ============================================
+   EMBER/PARTICLE ANIMATION EFFECTS
+   ============================================ */
+/* Floating embers that rise up the page */
+.ember-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.ember {
+  position: absolute;
+  font-size: 28px;
+  line-height: 1;
+  animation: riseAndFade 8s ease-in infinite;
+  filter: drop-shadow(0 0 8px rgba(255, 100, 0, 0.8));
+  text-shadow: 0 0 12px rgba(255, 69, 0, 0.9), 0 0 24px rgba(255, 140, 0, 0.6);
+}
+
+/* Generate multiple embers with staggered animations */
+.ember:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 7s }
+.ember:nth-child(2) { left: 25%; animation-delay: 1s; animation-duration: 8s }
+.ember:nth-child(3) { left: 40%; animation-delay: 2s; animation-duration: 7.5s }
+.ember:nth-child(4) { left: 60%; animation-delay: 0.5s; animation-duration: 8.5s }
+.ember:nth-child(5) { left: 75%; animation-delay: 1.5s; animation-duration: 7s }
+.ember:nth-child(6) { left: 90%; animation-delay: 2.5s; animation-duration: 8s }
+
+@keyframes riseAndFade {
+  0% {
+    bottom: -30px;
+    opacity: 0;
+    transform: translateX(0) scale(1) rotateZ(0deg);
+  }
+  8% {
+    opacity: 1;
+  }
+  92% {
+    opacity: 0.9;
+  }
+  100% {
+    bottom: 110vh;
+    opacity: 0;
+    transform: translateX(60px) scale(0.3) rotateZ(360deg);
+  }
+}
+
+@media (max-width:700px){
+  .thumb img { height:220px }
+  .lb-prev, .lb-next { display:none }
+  .lb-reviews { flex-direction:column; align-items:stretch }
+  .lb-image-wrap { max-height:55% }
+}
+
+/* Summary table and all comments styles */
+.summary-section { max-width:1100px; margin: 30px auto; padding: 0 30px }
+.summary-table { width:100%; border-collapse: collapse; margin-top:14px }
+.summary-table th, .summary-table td { padding:10px 12px; border-bottom:1px solid #eee; text-align:left }
+.summary-table thead th { color:#6b5a4a }
+
+.all-comments { max-width:1100px; margin: 30px auto 80px; padding: 0 30px }
+/* Larger, more readable comments area */
+.all-comments-form { display:flex; gap:14px; align-items:flex-start; margin-bottom:20px }
+.all-comments-form select { padding:10px; border-radius:8px; font-size:1rem }
+.all-comments-form textarea { flex:1; min-height:110px; padding:14px; border-radius:10px; border:1px solid #e6e0da; font-size:1rem; line-height:1.45; font-family: "Segoe UI", Arial, sans-serif }
+.all-comments-form button { padding:10px 16px; font-size:1rem; border-radius:8px }
+.all-comments-list { display:flex; flex-direction:column; gap:14px }
+.all-comment-item { background:white; padding:14px 16px; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,0.05); font-size:1rem }
+.ac-meta { display:flex; align-items:center; gap:14px; color:#6b5a4a; margin-bottom:10px; font-size:0.98rem }
+.ac-body { color:#222; font-size:1rem; line-height:1.5 }
+
+@media (max-width:700px){
+  .all-comments-form { flex-direction:column }
+}
+
+@media (max-width:700px){
+  .thumb img { height:160px }
+  .lb-prev, .lb-next { display:none }
+}
+

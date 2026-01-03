@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Avis style Amazon (démo)</title>
+  <style>
+    /* Container */
+    .rating-row{display:flex;align-items:center;gap:12px;font-family:Arial,Helvetica,sans-serif}
+    .avg{font-weight:700;font-size:1.15rem;color:#111}
+    .count{color:#444;font-size:0.95rem}
+
+    /* Stars: base (gris) and overlay (doré) using a clipped ::before */
+    .stars{--percent:0;position:relative;display:inline-block;font-size:1.25rem;line-height:1}
+    .stars::after{content:'★★★★★';color:#ddd;letter-spacing:2px}
+    .stars::before{content:'★★★★★';color:#f1c40f;position:absolute;left:0;top:0;overflow:hidden;width:calc(var(--percent) * 1%);white-space:nowrap;pointer-events:none}
+
+    /* Small visual tuning to look closer to Amazon */
+    .rating-row .avg{margin-right:6px}
+    .rating-row .stars{transform:translateY(1px)}
+
+    /* Optional: container example styling */
+    .demo-box{padding:18px;border:1px solid #eee;border-radius:8px;background:#fff;max-width:360px}
+    .meta-note{margin-top:10px;color:#666;font-size:0.9rem}
+  </style>
+</head>
+<body>
+
+  <main class="demo-box">
+    <h2>Évaluation (style Amazon) — Démo</h2>
+
+    <!-- Structure rendue dynamiquement par JavaScript -->
+    <div id="rating-widget" class="rating-row" role="region" aria-label="Note moyenne et nombre d'avis"></div>
+
+    <p class="meta-note">Exemple : "3,4 ★★★★☆ (4)" — la moyenne s'affiche avec une décimale et les étoiles sont partiellement remplies.</p>
+  </main>
+
+  <script>
+    /*************************************************************************
+     * Simple widget d'avis (HTML/CSS/JS) — compatible GitHub Pages
+     * - Les avis sont stockés dans un tableau JavaScript (pas de backend)
+     * - Calcule la moyenne, l'affiche avec 1 décimale (virgule) et rend
+     *   5 étoiles avec remplissage partiel (via --percent)
+     *************************************************************************/
+
+    // Exemple de données (modifiable) : remplacez ce tableau par vos avis
+    const ratingsArray = [5, 4, 4, 3];
+
+    /**
+     * Calcule la moyenne d'un tableau de notes (valeurs 1..5)
+     * @param {number[]} arr
+     * @returns {number} moyenne (float)
+     */
+    function computeAverage(arr){
+      if(!arr || arr.length === 0) return 0;
+      const sum = arr.reduce((s,v) => s + Number(v), 0);
+      return sum / arr.length;
+    }
+
+    /**
+     * Rend le widget dans l'élément donné
+     * @param {string} containerId
+     * @param {number[]} arr
+     */
+    function renderRating(containerId, arr){
+      const container = document.getElementById(containerId);
+      if(!container) return;
+
+      const avg = computeAverage(arr);
+      const count = arr.length;
+
+      // moyenne formattée avec 1 décimale et virgule (français)
+      const avgOneDecimal = avg.toFixed(1).replace('.', ',');
+
+      // pourcentage de remplissage (0-100)
+      const percent = (avg / 5) * 100;
+
+      // Création des éléments : moyenne, étoiles et nombre
+      container.innerHTML = '';
+      const avgEl = document.createElement('span');
+      avgEl.className = 'avg';
+      avgEl.textContent = avgOneDecimal;
+
+      const starsEl = document.createElement('span');
+      starsEl.className = 'stars';
+      // la variable CSS --percent contrôle la largeur de l'overlay doré
+      starsEl.style.setProperty('--percent', String(percent));
+      starsEl.setAttribute('aria-hidden', 'true');
+
+      const countEl = document.createElement('span');
+      countEl.className = 'count';
+      countEl.textContent = '(' + count + ')';
+
+      // Accessible label pour lecteurs d'écran
+      container.setAttribute('aria-label', avgOneDecimal + ' sur 5 étoiles, ' + count + ' avis');
+
+      container.appendChild(avgEl);
+      container.appendChild(starsEl);
+      container.appendChild(countEl);
+    }
+
+    // Rendu initial
+    renderRating('rating-widget', ratingsArray);
+
+    // --- API simple pour mise à jour dynamique ---
+    // Vous pouvez ajouter une note puis rappeler renderRating
+    // Exemple : push une nouvelle note et rerender
+    // ratingsArray.push(5); renderRating('rating-widget', ratingsArray);
+
+  </script>
+</body>
+</html>
